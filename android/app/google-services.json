@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "138014873080",
+    "project_id": "alerts-maid",
+    "storage_bucket": "alerts-maid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138014873080:android:c1e45c5db841fafc2fb20d",
+        "android_client_info": {
+          "package_name": "com.example.alert_maid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSl6azidVT68u2s5xKWSHnupwV3faVhX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
