@@ -38,11 +38,11 @@ class AddMaidScreen extends GetView<AddMaidController> {
                   controller: controller.nameC, label:  'Maid Name', hint: ''),
                         const SizedBox(height: 16),
  CustomInput(
-                  controller: controller.emgNameC, label:  'Maid Age', hint: ''),
+                  controller: controller.ageC, label:  'Maid Age', hint: ''),
 
                       const SizedBox(height: 16),
  CustomInput(
-                  controller: controller.emgNameC, label:  'Maid Phone', hint: ''),
+                  controller: controller.phoneC, label:  'Maid Phone', hint: ''),
                       ],
                     ),
                   ),

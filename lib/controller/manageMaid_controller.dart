@@ -8,18 +8,17 @@ class ManageMaidController extends GetxController {
      @override
   void onInit() async {
     super.onInit();
-
+fetchMaid();
   }
 
-    var childID = Get.arguments;
+    var maidID = Get.arguments;
 
   DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController ageC = TextEditingController();
-  TextEditingController emgNameC = TextEditingController();
-  TextEditingController emgPhoneC = TextEditingController();
-  TextEditingController tempC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
+
   
   var isLoading = false.obs;
 
@@ -27,9 +26,8 @@ class ManageMaidController extends GetxController {
  void Clear(){
       nameC.clear();
       ageC.clear();
-      emgNameC.clear();
-      emgPhoneC.clear();
-      tempC.clear();
+      phoneC.clear();
+    
  }
 
 void updateChild() {
@@ -38,29 +36,35 @@ void updateChild() {
 
   if (nameC.text.isEmpty ||
       ageC.text.isEmpty ||
-      emgNameC.text.isEmpty ||
-      emgPhoneC.text.isEmpty ||
-      tempC.text.isEmpty) {
+      phoneC.text.isEmpty
+     ) {
     CustomToast.errorToast('Please fill in all fields');
     return;
   }
 
-  databaseReference.child(childID).update({
+  databaseReference.child(maidID).update({
     'name': nameC.text,
     'age': ageC.text,
-    'emergName': emgNameC.text,
-    'emergPhone': emgPhoneC.text,
-    'temperature': tempC.text,
+    'phone': phoneC.text,
   }).then((value) {
     isLoading = false.obs;
-    CustomToast.successToast('Updated Child successfully');
+    CustomToast.successToast('Updated Maid successfully');
     Clear();
   }).catchError((error) {
     isLoading = false.obs;
     // Handle error
-    CustomToast.errorToast('Error updating child: $error');
+    CustomToast.errorToast('Error updating Maid: $error');
   });
   
 }
-
+  void fetchMaid() async {
+          databaseReference = FirebaseDatabase.instance.ref().child('maids');
+ DataSnapshot snapshot = await databaseReference.child(maidID).get();
+ 
+    Map child = snapshot.value as Map;
+ 
+    nameC.text = child['name'];
+    ageC.text = child['age'];
+    phoneC.text = child['phone'];
+}
 }

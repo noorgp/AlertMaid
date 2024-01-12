@@ -1,4 +1,5 @@
 import 'package:alert_maid/controller/maidList_controller.dart';
+import 'package:alert_maid/controller/manageMaid_controller.dart';
 import 'package:alert_maid/routes/app_pages.dart';
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/fonts.dart';
@@ -7,7 +8,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MAIDLISTScreen extends GetView<MaidListController> {
+class MAIDLISTScreen extends GetView<ManageMaidController> {
   const MAIDLISTScreen({Key? key}) : super(key: key);
 
   @override
@@ -24,10 +25,21 @@ class MAIDLISTScreen extends GetView<MaidListController> {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 8,
-              itemBuilder: (context, index) {
+           StreamBuilder(
+  stream: FirebaseDatabase.instance.reference().child("maids").onValue,
+  builder: (context, AsyncSnapshot snapshot) {
+    if (snapshot.hasData) {
+      var data = snapshot.data!.snapshot.value;
+      print(data);
+      if (data != null) {
+List<String> ids = List.from(data.keys.map((key) => key.toString()));
+ 
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: ids.length,
+          itemBuilder: (context, index) {
+            var id = ids[index];
+          
                 return Card(
                   color: Colors.white,
                   elevation: 3,
@@ -43,18 +55,27 @@ class MAIDLISTScreen extends GetView<MaidListController> {
                         child: Icon(Icons.girl_rounded, color: AppColor.secondaryColor,),
                       ),
                       title: Text(
-                        "Maid",
+                        data[id]["name"],
                         style: TextStyle(fontSize: 16),
                       ),
                       trailing: Icon(Icons.arrow_forward, color: AppColor.primaryColor),
                       onTap: () {
-                      Get.toNamed(Routes.MAIDINFO);
+                      Get.toNamed(Routes.MAIDINFO, arguments: id);
                       },
                     ),
                   ),
                 );
+                   },
+                    );
+                  } else {
+                    return Center(child: Text("No data available."));
+                  }
+                }
+                return Center(child: CircularProgressIndicator());
               },
             ),
+              
+            
           ],
         ),
       ),

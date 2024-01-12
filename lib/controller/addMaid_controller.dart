@@ -8,11 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AddMaidController extends GetxController {
     TextEditingController ageC = TextEditingController();
   DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
-  TextEditingController emgNameC = TextEditingController();
-  TextEditingController emgPhoneC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
  var isLoading = false.obs;
   TextEditingController nameC = TextEditingController();
-  TextEditingController tempC = TextEditingController();
 
   late SharedPreferences _prefs;
 String? uId ;
@@ -27,47 +25,34 @@ String? uId ;
  void Clear(){
    nameC.clear();
       ageC.clear();
-      emgNameC.clear();
-      emgPhoneC.clear();
-      tempC.clear();
+      nameC.clear();
+      phoneC.clear();
  }
 void ADDMAID() {
   isLoading = true.obs;
 
   if (nameC.text.isEmpty ||
-      ageC.text.isEmpty ||
-      emgNameC.text.isEmpty ||
-      emgPhoneC.text.isEmpty ||
-      tempC.text.isEmpty) {
+      ageC.text.isEmpty ||    
+      phoneC.text.isEmpty) {
     CustomToast.errorToast('Please fill in all fields');
     return;
   }
 
-  double temperature = double.tryParse(tempC.text) ?? 0.0;
 
-  if (temperature > 40 || temperature < 35) {
-     isLoading = false.obs;
-    CustomToast.errorToast('Invalid temperature. Temperature must be between 35 and 40.');
-    return;
-  }
-
-  DatabaseReference childrenRef = databaseReference.child("Children");
+ 
+  DatabaseReference MaidRef = databaseReference.child("Maids");
 
   // Push the data and get the key
-  DatabaseReference newChildRef = childrenRef.push();
-  String? childKey = newChildRef.key;
+  DatabaseReference newMaidRef = MaidRef.push();
+  String? maidKey = newMaidRef.key;
 
   // Set the data along with the child key
-  newChildRef.set({
+  newMaidRef.set({
     'name': nameC.text,
     'age': ageC.text,
-    'emergName': emgNameC.text,
-    'emergPhone': emgPhoneC.text,
-    'temperature': tempC.text,
-    'responded': 0,
-    'id': childKey, // Add the child key here
-    'time':"",
-    'uId':uId,
+   
+    'emergPhone': phoneC.text,
+    'id': maidKey, 
   }).then((value) {
     isLoading = false.obs;
     CustomToast.successToast('Added Maid successfully');
