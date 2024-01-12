@@ -18,6 +18,7 @@ static const TEMPPAGE = _Paths.TEMPPAGE;
 static const CHILDTEMPLIST = _Paths.CHILDTEMPLIST;
 static const FORGETPASSWORD = _Paths.FORGETPASSWORD;
 static const ALERTDETAILS = _Paths.ALERTDETAILS;
+static const ABOUT = _Paths.ABOUT;
 
 }
 
@@ -36,5 +37,5 @@ abstract class _Paths {
         static const CHILDTEMPLIST = '/CHILDTEMPLIST';
         static const FORGETPASSWORD = '/FORGETPASSWORD';
         static const ALERTDETAILS = '/ALERTDETAILS';
-
+  static const ABOUT = '/ABOUT';
 }

@@ -1,4 +1,5 @@
 
+import 'package:alert_maid/view/about_screen.dart';
 import 'package:alert_maid/view/addMaid_screen.dart';
 import 'package:alert_maid/view/alertDetails_screen.dart';
 import 'package:alert_maid/view/maidInfo_screen.dart';
@@ -30,10 +31,6 @@ class AppPages {
       name: _Paths.MAINPAGE,
       page: () =>   MainPageScreen(),
     ),
-    //   GetPage(
-    //   name: _Paths.SETTINGS,
-    //   page: () =>  const SettingsScreen(),
-    // ),
       GetPage(
       name: _Paths.USERINFO,
       page: () =>  const UserInfoScreen(),
@@ -52,18 +49,6 @@ class AppPages {
       name: _Paths.MAIDINFO,
       page: () =>   MaidInfoScreen(),
     ),
-
-    //  GetPage(
-    //   name: _Paths.TEMPPAGE,
-    //   page: () =>   TempPageScreen(),
-    // ),
-
-    //   GetPage(
-    //   name: _Paths.CHILDTEMPLIST,
-    //   page: () =>  const ChildTempListScreen(),
-    // ),
-
-
     GetPage(
       name: _Paths.FORGETPASSWORD,
       page: () =>  const ForgetPasswordScreen(),
@@ -71,6 +56,10 @@ class AppPages {
       GetPage(
       name: _Paths.ALERTDETAILS,
       page: () =>   MaidDetailsPage(),
+    ),
+     GetPage(
+      name: _Paths.ABOUT,
+      page: () =>   AboutScreen(),
     ),
   ];
 }

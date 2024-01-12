@@ -32,7 +32,7 @@ class SettingsScreen extends GetView<HomeController> {
             buildListTile(
               label: 'About',
               icon: Icons.info,
-              route: Routes.USERINFO,
+              route: Routes.ABOUT,
             ),
              SizedBox(height: 8),
          Card(
