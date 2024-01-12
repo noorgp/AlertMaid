@@ -63,24 +63,4 @@ void updateChild() {
   
 }
 
-
-
-
-
-
-
-//    void fetchChildren() async {
-//           databaseReference = FirebaseDatabase.instance.ref().child('Children');
-//  DataSnapshot snapshot = await databaseReference.child(childID).get();
- 
-//     Map child = snapshot.value as Map;
- 
-//     nameC.text = child['name'];
-//     ageC.text = child['age'];
-//     emgNameC.text = child['emergName'];
-//     emgPhoneC.text = child['emergPhone'];
-//     tempC.text = child['temperature'];
-
-// }
-
 }

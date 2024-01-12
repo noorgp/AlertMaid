@@ -1,5 +1,6 @@
 
 import 'package:alert_maid/controller/addMaid_controller.dart';
+import 'package:alert_maid/controller/alerts_controller.dart';
 import 'package:alert_maid/controller/maidList_controller.dart';
 import 'package:alert_maid/controller/createAccount_controller.dart';
 import 'package:alert_maid/controller/forgetPassword_controller.dart';
@@ -27,7 +28,7 @@ Future init() async {
 
   Get.lazyPut(() => HomeController(), fenix: true);
   Get.lazyPut(() => ManageMaidController(), fenix: true);
-  // Get.lazyPut(() => AlertsController(), fenix: true);
+   Get.lazyPut(() => AlertsController(), fenix: true);
   // Get.lazyPut(() => TempController(), fenix: true);
   Get.lazyPut(() => UserInfoController(), fenix: true);
    Get.lazyPut(() => MaidListController(), fenix: true);

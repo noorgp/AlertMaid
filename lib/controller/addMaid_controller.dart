@@ -70,13 +70,13 @@ void ADDMAID() {
     'uId':uId,
   }).then((value) {
     isLoading = false.obs;
-    CustomToast.successToast('Added Child successfully');
+    CustomToast.successToast('Added Maid successfully');
     Clear();
   }).catchError((error) {
     isLoading = false.obs;
 
     // Handle error
-    CustomToast.errorToast('Error adding child: $error');
+    CustomToast.errorToast('Error adding Maid: $error');
   });
 }
 

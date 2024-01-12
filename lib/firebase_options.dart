@@ -35,7 +35,7 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions web = FirebaseOptions(
    apiKey: 'AIzaSyBSl6azidVT68u2s5xKWSHnupwV3faVhX4',
     appId: '1:138014873080:android:c1e45c5db841fafc2fb20d',
-    databaseURL: "https://temptrackerapp-620a4-default-rtdb.firebaseio.com",
+    databaseURL: "https://alerts-maid-default-rtdb.firebaseio.com",
     messagingSenderId: '138014873080',
     projectId: 'alerts-maid',
     storageBucket: 'alerts-maid.appspot.com',
@@ -44,7 +44,7 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBSl6azidVT68u2s5xKWSHnupwV3faVhX4',
     appId: '1:138014873080:android:c1e45c5db841fafc2fb20d',
-    databaseURL: "https://temptrackerapp-620a4-default-rtdb.firebaseio.com",
+    databaseURL: "https://alerts-maid-default-rtdb.firebaseio.com",
     messagingSenderId: '138014873080',
     projectId: 'alerts-maid',
     storageBucket: 'alerts-maid.appspot.com',

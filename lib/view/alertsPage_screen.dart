@@ -1,14 +1,14 @@
 import 'package:alert_maid/controller/alerts_controller.dart';
 import 'package:alert_maid/controller/home_controller.dart';
+import 'package:alert_maid/routes/app_pages.dart';
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/fonts.dart';
 import 'package:alert_maid/style/images.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class AlertsPageScreen extends GetView<HomeController> {
-  HomeController homeController = HomeController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,22 +16,24 @@ class AlertsPageScreen extends GetView<HomeController> {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: FirebaseFirestore.instance
-                  .collection('maid')
-                  //.where('uId', isEqualTo: homeController.uId)
-                  .snapshots(),
-                builder: (context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-                if (snapshot.hasData) {
-                  var data = snapshot.data?.docs;
-
-                  if (data != null && data.isNotEmpty) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: data.length,
-                      itemBuilder: (context, index) {
-                        var document = data[index];
-
+          StreamBuilder(
+  stream: FirebaseDatabase.instance.reference().child("maids").onValue,
+  builder: (context, AsyncSnapshot snapshot) {
+    if (snapshot.hasData) {
+      var data = snapshot.data!.snapshot.value;
+      print(data);
+      if (data != null) {
+List<String> ids = List.from(data.keys.map((key) => key.toString()));
+ 
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: ids.length,
+          itemBuilder: (context, index) {
+            var id = ids[index];
+          
+            var phone = data[id]['phone'];
+            // Check if the necessary fields are present and are of the expected type
+        
                         return Card(
                           elevation: 3,
                           margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -46,11 +48,11 @@ class AlertsPageScreen extends GetView<HomeController> {
                                   child: ListTile(
                                     contentPadding: const EdgeInsets.only(right: 10),
                                     title: Text(
-                                      document["name"],
+                              " ${data[id]["name"]}",
                                       style: robotoHuge,
                                     ),
                                     subtitle: Text(
-                                      "730010012",
+                                     " $phone",
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.red,
@@ -61,7 +63,7 @@ class AlertsPageScreen extends GetView<HomeController> {
                                     trailing:
                                         Icon(Icons.arrow_forward, color: AppColor.primaryColor,),
                                     onTap: () {
-                                      // Handle tap on the ListTile
+                                     Get.toNamed(Routes.ALERTDETAILS, arguments: id);
                                     },
                                   ),
                                 ),
