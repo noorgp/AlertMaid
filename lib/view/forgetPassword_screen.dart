@@ -14,7 +14,7 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController>{
     var size = MediaQuery.of(context).size;
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Forget your Password", style: robotoMediumWhite,),
+        title: Text("Forget your Password", style: TextStyle(fontSize: 18, color: Colors.white),),
          backgroundColor:  AppColor.primaryColor, iconTheme: const IconThemeData(
     color: Colors.white,), 
       ),

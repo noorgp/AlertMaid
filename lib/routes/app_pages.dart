@@ -2,6 +2,8 @@
 import 'package:alert_maid/view/about_screen.dart';
 import 'package:alert_maid/view/addMaid_screen.dart';
 import 'package:alert_maid/view/alertDetails_screen.dart';
+import 'package:alert_maid/view/alertsHistory_screen.dart';
+import 'package:alert_maid/view/historyDetails_screen.dart';
 import 'package:alert_maid/view/maidInfo_screen.dart';
 import 'package:alert_maid/view/maidList_screen.dart';
 import 'package:alert_maid/view/createAccount_screen.dart';
@@ -60,6 +62,14 @@ class AppPages {
      GetPage(
       name: _Paths.ABOUT,
       page: () =>   AboutScreen(),
+    ),
+     GetPage(
+      name: _Paths.HISTORY,
+      page: () =>   AlertsHistoryScreen(),
+    ),
+       GetPage(
+      name: _Paths.HISTORYDETAILS,
+      page: () =>   HistoryDetailsPage(),
     ),
   ];
 }

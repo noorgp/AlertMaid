@@ -19,13 +19,15 @@ class CreateAccountController extends GetxController {
 
 
   Future<void> createUser() async {
+ isLoading = true.obs;
 
+  if (emailC.text.isNotEmpty && passC.text.isNotEmpty && nameC.text.isNotEmpty && phoneC.text.isNotEmpty ) {
     try {
-            isLoading = true.obs;
+           
 
       UserCredential userCredential =
           await auth.createUserWithEmailAndPassword(
-        email: emailC.text,
+        email: emailC.text.trim(),
         password: passC.text,
       );
   
@@ -70,8 +72,12 @@ class CreateAccountController extends GetxController {
       CustomToast.errorToast(' error: $e');
       print('the error is $e');
     }
+     } else {
+ CustomToast.errorToast('Please complete all the fields');
+    isLoading.value = false;
   }
-
+  }
+ 
 
 
 }

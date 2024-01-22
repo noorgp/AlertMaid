@@ -19,6 +19,8 @@ static const CHILDTEMPLIST = _Paths.CHILDTEMPLIST;
 static const FORGETPASSWORD = _Paths.FORGETPASSWORD;
 static const ALERTDETAILS = _Paths.ALERTDETAILS;
 static const ABOUT = _Paths.ABOUT;
+static const HISTORY = _Paths.HISTORY;
+static const HISTORYDETAILS = _Paths.HISTORYDETAILS;
 
 }
 
@@ -29,13 +31,15 @@ abstract class _Paths {
   static const MAINPAGE = '/MAINPAGE';
   static const SETTINGS = '/SETTINGS';
   static const USERINFO = '/USERINFO';
-    static const MAIDLIST = '/MAIDLIST';
-    static const ADDMAID = '/ADDMAID';
-    static const MAIDINFO = '/MAIDINFO';
-        static const TEMPPAGE = '/TEMPPAGE';
-
-        static const CHILDTEMPLIST = '/CHILDTEMPLIST';
-        static const FORGETPASSWORD = '/FORGETPASSWORD';
-        static const ALERTDETAILS = '/ALERTDETAILS';
+  static const MAIDLIST = '/MAIDLIST';
+  static const ADDMAID = '/ADDMAID';
+  static const MAIDINFO = '/MAIDINFO';
+  static const TEMPPAGE = '/TEMPPAGE';
+  static const CHILDTEMPLIST = '/CHILDTEMPLIST';
+  static const FORGETPASSWORD = '/FORGETPASSWORD';
+  static const ALERTDETAILS = '/ALERTDETAILS';
   static const ABOUT = '/ABOUT';
+  static const HISTORY = '/HISTORY';
+  static const HISTORYDETAILS = '/HISTORYDETAILS';
+
 }

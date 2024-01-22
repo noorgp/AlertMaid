@@ -6,14 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AlertsPageScreen extends GetView<HomeController> {
+class AlertsHistoryScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         appBar: AppBar(
+        title:  Text( 'Alerts History', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+          backgroundColor: AppColor.primaryColor,  iconTheme: const IconThemeData(
+    color: Colors.white,),  ), 
+         
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('alerts')
-            .where('checked', isEqualTo: false)
+            .where('checked', isEqualTo: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -61,7 +66,7 @@ class AlertsPageScreen extends GetView<HomeController> {
                                 color: AppColor.primaryColor,
                               ),
                               onTap: () {
-                                Get.toNamed(Routes.ALERTDETAILS, arguments: alert.id);
+                                Get.toNamed(Routes.HISTORYDETAILS, arguments: alert.id);
                               },
                             ),
                           ),

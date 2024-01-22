@@ -12,7 +12,10 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'About',
-          style: robotoHugeWhite,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20
+          ),
         ),
         backgroundColor: AppColor.primaryColor,
         iconTheme: const IconThemeData(
@@ -27,7 +30,7 @@ class AboutScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               "Our Housemaid security alert system is more than a technological innovation, it is a humanitarian endeavor and an innovative system designed to create secure environments for those who earnestly contribute to the cleanliness of our homes. It provides a confidential way for the maid to request assistance in case of danger. By pressing the button on the bracelet, an alert is sent to the company with the maid's location, ensuring a quick response and appropriate action for safety assurance.",
-              style: robotoMedium,
+              style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
           ),

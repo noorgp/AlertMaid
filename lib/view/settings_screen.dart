@@ -12,6 +12,7 @@ class SettingsScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -27,6 +28,12 @@ class SettingsScreen extends GetView<HomeController> {
               label: 'Maids',
               icon: Icons.girl_rounded,
               route: Routes.MAIDLIST,
+            ),
+              SizedBox(height: 8),
+            buildListTile(
+              label: 'History',
+              icon: Icons.history,
+              route: Routes.HISTORY,
             ),
             SizedBox(height: 8),
             buildListTile(

@@ -38,11 +38,11 @@ class AddMaidScreen extends GetView<AddMaidController> {
                   controller: controller.nameC, label:  'Maid Name', hint: ''),
                         const SizedBox(height: 16),
  CustomInput(
-                  controller: controller.ageC, label:  'Maid Age', hint: ''),
+                  controller: controller.ageC, label:  'Maid Age', hint: '',keyboardType: TextInputType.number),
 
                       const SizedBox(height: 16),
  CustomInput(
-                  controller: controller.phoneC, label:  'Maid Phone', hint: ''),
+                  controller: controller.phoneC, label:  'Maid Phone', hint: '',keyboardType: TextInputType.number),
                       ],
                     ),
                   ),
@@ -66,7 +66,7 @@ class AddMaidScreen extends GetView<AddMaidController> {
     child: Obx(
       () {
         return controller.isLoading.value
-            ?  CircularProgressIndicator(color: AppColor.secondary)
+            ?  CircularProgressIndicator(color: Colors.white)
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -77,7 +77,7 @@ class AddMaidScreen extends GetView<AddMaidController> {
                   const SizedBox(width: 8),
                   Text(
                     'Save',
-                    style: robotoMediumWhite
+                    style: TextStyle(fontSize: 18, color: Colors.white)
                   ),
                 ],
               );

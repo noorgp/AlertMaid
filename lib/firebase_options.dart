@@ -33,21 +33,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-   apiKey: 'AIzaSyBSl6azidVT68u2s5xKWSHnupwV3faVhX4',
-    appId: '1:138014873080:android:c1e45c5db841fafc2fb20d',
-    databaseURL: "https://alerts-maid-default-rtdb.firebaseio.com",
-    messagingSenderId: '138014873080',
-    projectId: 'alerts-maid',
-    storageBucket: 'alerts-maid.appspot.com',
+   apiKey: 'AIzaSyAYeRrZXWwa70H3iKUr3aoWlOoj3Hh2AXU',
+    appId: '1:917399860311:android:5587218369072dc233df12',
+    databaseURL: "https://alerts-maid-dbc5c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    messagingSenderId: '917399860311',
+    projectId: 'alerts-maid-dbc5c',
+    storageBucket: 'alerts-maid-dbc5c.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBSl6azidVT68u2s5xKWSHnupwV3faVhX4',
-    appId: '1:138014873080:android:c1e45c5db841fafc2fb20d',
-    databaseURL: "https://alerts-maid-default-rtdb.firebaseio.com",
-    messagingSenderId: '138014873080',
-    projectId: 'alerts-maid',
-    storageBucket: 'alerts-maid.appspot.com',
+    apiKey: 'AIzaSyAYeRrZXWwa70H3iKUr3aoWlOoj3Hh2AXU',
+    appId: '1:917399860311:android:5587218369072dc233df12',
+    databaseURL: "https://alerts-maid-dbc5c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    messagingSenderId: '917399860311',
+    projectId: 'alerts-maid-dbc5c',
+    storageBucket: 'alerts-maid-dbc5c.appspot.com',
   );  
 
 }

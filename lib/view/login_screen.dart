@@ -10,22 +10,21 @@ import 'package:get/get.dart';
 
 class LoginScreen  extends  GetView<LoginController> {
    const LoginScreen ({super.key});
-
   @override
   Widget build(BuildContext context) {
-      
 
           var size = MediaQuery.of(context).size;
-
     return  SafeArea(
       child: Scaffold(
+        
       
         body: Padding(padding: const EdgeInsets.only(left: 26,right: 26),
           child: SingleChildScrollView(
-            child: Column(
+            child: Column( 
               children: [
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.1,),
                  Container(
+                 
           width: size.width * 1 , 
           height: size.height * 0.2,
           child: Image.asset(Images.logo),
@@ -45,9 +44,11 @@ class LoginScreen  extends  GetView<LoginController> {
 
                       CustomInput(
 
-                    controller: controller.passC, label:  'Password', hint: '',obscureText: true),
+                    controller: controller.passC, label:  'Password', hint: '', obscureText: true),
 
-                                      const SizedBox(height:30),
+                      const SizedBox(height:30),
+
+
 
             SizedBox(
                   width: double.infinity,
@@ -70,6 +71,10 @@ class LoginScreen  extends  GetView<LoginController> {
       
             ), 
             ),
+
+
+
+
       TextButton(onPressed: (){
     
     Get.toNamed(Routes.FORGETPASSWORD);

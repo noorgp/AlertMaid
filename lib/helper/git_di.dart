@@ -1,6 +1,7 @@
 
 import 'package:alert_maid/controller/addMaid_controller.dart';
 import 'package:alert_maid/controller/alerts_controller.dart';
+import 'package:alert_maid/controller/history_controller.dart';
 import 'package:alert_maid/controller/maidList_controller.dart';
 import 'package:alert_maid/controller/createAccount_controller.dart';
 import 'package:alert_maid/controller/forgetPassword_controller.dart';
@@ -17,10 +18,6 @@ import '../controller/login_controller.dart';
 
 Future init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
-
-
-
- //Get.lazyPut(() => LoginController(), fenix: true);
        Get.lazyPut(() => LoginController(sharedPreferences: Get.find()),
       fenix: true);
       Get.lazyPut(() => CreateAccountController(), fenix: true);
@@ -29,12 +26,12 @@ Future init() async {
   Get.lazyPut(() => HomeController(), fenix: true);
   Get.lazyPut(() => ManageMaidController(), fenix: true);
    Get.lazyPut(() => AlertsController(), fenix: true);
-  // Get.lazyPut(() => TempController(), fenix: true);
   Get.lazyPut(() => UserInfoController(), fenix: true);
    Get.lazyPut(() => MaidListController(), fenix: true);
     Get.lazyPut(() => AddMaidController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
 
+    Get.lazyPut(() => HistoryController(), fenix: true);
 
 
 }

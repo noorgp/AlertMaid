@@ -4,6 +4,7 @@ import 'package:alert_maid/routes/app_pages.dart';
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/fonts.dart';
 import 'package:alert_maid/style/images.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,21 +26,20 @@ class MAIDLISTScreen extends GetView<ManageMaidController> {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-           StreamBuilder(
-  stream: FirebaseDatabase.instance.reference().child("maids").onValue,
-  builder: (context, AsyncSnapshot snapshot) {
-    if (snapshot.hasData) {
-      var data = snapshot.data!.snapshot.value;
-      print(data);
-      if (data != null) {
-List<String> ids = List.from(data.keys.map((key) => key.toString()));
- 
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: ids.length,
-          itemBuilder: (context, index) {
-            var id = ids[index];
-          
+          StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance.collection('maids').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var maidList = snapshot.data!.docs;
+                  if (maidList.isNotEmpty) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: maidList.length,
+                      itemBuilder: (context, index) {
+                        var maid = maidList[index];
+                        var maidData = maid.data() as Map<String, dynamic>;
+
+
                 return Card(
                   color: Colors.white,
                   elevation: 3,
@@ -55,12 +55,12 @@ List<String> ids = List.from(data.keys.map((key) => key.toString()));
                         child: Icon(Icons.girl_rounded, color: AppColor.secondaryColor,),
                       ),
                       title: Text(
-                        data[id]["name"],
+                        maidData["name"],
                         style: TextStyle(fontSize: 16),
                       ),
                       trailing: Icon(Icons.arrow_forward, color: AppColor.primaryColor),
                       onTap: () {
-                      Get.toNamed(Routes.MAIDINFO, arguments: id);
+                      Get.toNamed(Routes.MAIDINFO, arguments: maid);
                       },
                     ),
                   ),

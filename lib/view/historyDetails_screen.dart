@@ -1,11 +1,12 @@
 import 'package:alert_maid/controller/alerts_controller.dart';
+import 'package:alert_maid/controller/history_controller.dart';
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MaidDetailsPage extends GetView<AlertsController> {
+class HistoryDetailsPage extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +32,7 @@ class MaidDetailsPage extends GetView<AlertsController> {
                 Icon(Icons.girl_rounded)
               ],
             ),
-            SizedBox(height: 8),
-            Obx(() => Text("Age: ${controller.age.value}", style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
-            Row(
+                    Row(
               children: [
                 Obx(() => Text("Phone: ${controller.phone.value}", style:  TextStyle(fontSize: 16, fontWeight: FontWeight.bold))),
                    Icon(Icons.phone)
@@ -45,8 +44,6 @@ class MaidDetailsPage extends GetView<AlertsController> {
               child: ElevatedButton.icon(
                 onPressed: (){
 _openLocationOnMap();
-controller.updateAlert();
-                  
                 },
                 icon: Icon(Icons.map, color: Colors.white,),
                 label: Text(

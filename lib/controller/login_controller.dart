@@ -24,11 +24,12 @@ Future<void> login() async {
 
   if (emailC.text.isNotEmpty && passC.text.isNotEmpty) {
     try {
-      final credential = await auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(   
         email: emailC.text.trim(),
         password: passC.text,
       );
- sharedPreferences.setString('userId', auth.currentUser!.uid);
+
+  sharedPreferences.setString('userId', auth.currentUser!.uid);
 
        await  getUser();
           
@@ -45,6 +46,7 @@ Future<void> login() async {
    
 
       await Get.offNamed(Routes.MAINPAGE, arguments:  auth.currentUser!.uid);
+      
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         CustomToast.errorToast("Account not found");
@@ -74,6 +76,7 @@ Future<void> login() async {
     String? phone;
     String? userName;
     String? email;
+    
     await firestore
         .collection('user')
         .doc(auth.currentUser!.uid)
