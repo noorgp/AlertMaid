@@ -55,7 +55,7 @@ class MaidInfoScreen extends GetView<ManageMaidController> {
   child: ElevatedButton(
     onPressed: () async {
    
-      controller.updateChild();
+      controller.updateMaid();
      
     },
     style: ElevatedButton.styleFrom(

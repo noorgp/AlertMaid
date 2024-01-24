@@ -1,5 +1,6 @@
 
 import 'package:alert_maid/widgets/custom_toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,10 +31,8 @@ fetchMaid();
     
  }
 
-void updateChild() {
- 
+void updateMaid() {
   isLoading = true.obs;
-
   if (nameC.text.isEmpty ||
       ageC.text.isEmpty ||
       phoneC.text.isEmpty
@@ -41,7 +40,6 @@ void updateChild() {
     CustomToast.errorToast('Please fill in all fields');
     return;
   }
-
   databaseReference.child(maidID).update({
     'name': nameC.text,
     'age': ageC.text,
@@ -55,16 +53,29 @@ void updateChild() {
     // Handle error
     CustomToast.errorToast('Error updating Maid: $error');
   });
-  
 }
-  void fetchMaid() async {
-          databaseReference = FirebaseDatabase.instance.ref().child('maids');
- DataSnapshot snapshot = await databaseReference.child(maidID).get();
- 
-    Map child = snapshot.value as Map;
- 
-    nameC.text = child['name'];
-    ageC.text = child['age'];
-    phoneC.text = child['phone'];
+
+
+
+void fetchMaid() async {
+  try {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('maids').doc(maidID).get();
+
+    // Check if the document exists
+    if (snapshot.exists) {
+      // Access the data and update your text controllers
+      Map<String, dynamic> maidData = snapshot.data() as Map<String, dynamic>;
+      nameC.text = maidData['name'];
+      ageC.text = maidData['age'];
+      phoneC.text = maidData['phone'];
+    } else {
+      print('Document does not exist');
+      // Handle the case where the document does not exist
+    }
+  } catch (e) {
+    print('Error fetching maid: $e');
+    // Handle other potential errors during the fetch
+  }
 }
+
 }

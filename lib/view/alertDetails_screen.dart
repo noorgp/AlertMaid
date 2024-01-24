@@ -3,7 +3,6 @@ import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MaidDetailsPage extends GetView<AlertsController> {
   @override
@@ -44,7 +43,7 @@ class MaidDetailsPage extends GetView<AlertsController> {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: (){
-_openLocationOnMap();
+controller.openLocationOnMap();
 controller.updateAlert();
                   
                 },
@@ -68,14 +67,5 @@ controller.updateAlert();
     );
   }
 
-  void _openLocationOnMap() async {
-    final String mapLink =
-        'https://www.google.com/maps?q=${controller.location}';
-    if (await canLaunch(mapLink)) {
-      await launch(mapLink);
-    } else {
-      // Handle error
-      print("Could not launch $mapLink");
-    }
-  }
+
 }

@@ -16,7 +16,7 @@ class ForgetPasswordController extends GetxController {
           CustomToast.successToast("Please Check your Email to reset password");
 
         } catch (e){
-          CustomToast.errorToast("something went wrong ");
+          CustomToast.errorToast("something went wrong $e ");
         }
       }else{
                   CustomToast.errorToast("Please fill the email field ");

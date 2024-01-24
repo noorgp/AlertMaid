@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginController extends GetxController {
    FirebaseAuth auth = FirebaseAuth.instance;
      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   LoginController({required this.sharedPreferences});
 
   TextEditingController emailC = TextEditingController();
@@ -29,6 +30,8 @@ Future<void> login() async {
         password: passC.text,
       );
 
+     
+
   sharedPreferences.setString('userId', auth.currentUser!.uid);
 
        await  getUser();
@@ -47,21 +50,23 @@ Future<void> login() async {
 
       await Get.offNamed(Routes.MAINPAGE, arguments:  auth.currentUser!.uid);
       
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        CustomToast.errorToast("Account not found");
-      } else if (e.code == 'wrong-password') {
-        CustomToast.errorToast("Wrong Password");
-      } else {
-        CustomToast.errorToast("${"Error_because".tr}${e.toString()}");
-        print('the error $e');
-      }
-      isLoading.value = false;
-    } catch (e) {
-      CustomToast.errorToast("${"Error_because".tr}${e.toString()}");
-      print('the error $e');
-      isLoading.value = false;
-    }
+     } on FirebaseAuthException catch (e) {
+  // Print exception details for debugging
+  print('FirebaseAuthException: ${e.toString()}, Code: ${e.code.trim()}');
+
+  // Handle FirebaseAuthException
+  String errorCode = e.code.trim(); // Trim any leading or trailing whitespace
+  if (errorCode == 'user-not-found') {
+    CustomToast.errorToast("Account not found");
+  } else if (errorCode == 'invalid-credential') {
+    CustomToast.errorToast("Wrong Password");
+  } else {
+    CustomToast.errorToast("${"Error_because".tr}${e.toString()}");
+    print('the error $e');
+  }
+  isLoading.value = false;
+}
+
   } else {
     CustomToast.errorToast('Please complete all the fields');
     isLoading.value = false;

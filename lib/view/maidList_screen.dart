@@ -60,7 +60,7 @@ class MAIDLISTScreen extends GetView<ManageMaidController> {
                       ),
                       trailing: Icon(Icons.arrow_forward, color: AppColor.primaryColor),
                       onTap: () {
-                      Get.toNamed(Routes.MAIDINFO, arguments: maid);
+                      Get.toNamed(Routes.MAIDINFO, arguments: maid.id);
                       },
                     ),
                   ),

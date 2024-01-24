@@ -11,11 +11,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainPageScreen extends GetView<HomeController> {
   final List<Widget> _pages = [
-   const SettingsScreen(),
-   
-    AlertsPageScreen(),
-    
- 
+   const SettingsScreen(), 
+    AlertsPageScreen(), 
   ];
 
   final RxInt _selectedIndex = 1.obs;
@@ -39,22 +36,23 @@ print(uId);
         child:  Obx(
               () =>  Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text( 'Wellcome ${controller.username}', style: robotoHuge,),
+                child: Text( 'Wellcome ${controller.username}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
               ),  ),),
          backgroundColor: AppColor.whiteColor,   automaticallyImplyLeading: false, elevation: 0,), 
          
         body: Obx(
           () => _pages[_selectedIndex.value],
         ),
+
         bottomNavigationBar: CurvedNavigationBar(
           color: AppColor.primaryColor,
           backgroundColor: AppColor.whiteColor,
-          index: _selectedIndex.value,
+          index: _selectedIndex.value, 
           height:55,
           items: <Widget>[
            
-            Icon(Icons.more_horiz_rounded, size: 23, color: AppColor.secondaryColor,),
-            Icon(Icons.add_alert_rounded,size: 23, color: AppColor.secondaryColor,),
+            Icon(Icons.more_horiz_rounded, size: 23, color: AppColor.secondaryColor,), 
+            Icon(Icons.add_alert_rounded,size: 23, color: AppColor.secondaryColor,), 
      
             
           ],

@@ -1,10 +1,8 @@
-import 'package:alert_maid/controller/alerts_controller.dart';
 import 'package:alert_maid/controller/history_controller.dart';
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HistoryDetailsPage extends GetView<HistoryController> {
   @override
@@ -43,7 +41,7 @@ class HistoryDetailsPage extends GetView<HistoryController> {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: (){
-_openLocationOnMap();
+controller.openLocationOnMap();
                 },
                 icon: Icon(Icons.map, color: Colors.white,),
                 label: Text(
@@ -65,14 +63,5 @@ _openLocationOnMap();
     );
   }
 
-  void _openLocationOnMap() async {
-    final String mapLink =
-        'https://www.google.com/maps?q=${controller.location}';
-    if (await canLaunch(mapLink)) {
-      await launch(mapLink);
-    } else {
-      // Handle error
-      print("Could not launch $mapLink");
-    }
-  }
+
 }

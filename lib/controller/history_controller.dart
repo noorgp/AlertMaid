@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HistoryController extends GetxController {
     var alertId = Get.arguments;
@@ -42,4 +43,15 @@ Future<void> retrieveCheckedAlert() async {
   }
 }
 
+
+  void openLocationOnMap() async {
+    final String mapLink =
+        'https://www.google.com/maps?q=${location}';
+    if (await canLaunch(mapLink)) {
+      await launch(mapLink);
+    } else {
+      // Handle error
+      print("Could not launch $mapLink");
+    }
+  }
 }

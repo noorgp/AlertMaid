@@ -2,13 +2,13 @@
 import 'package:alert_maid/controller/login_controller.dart';
 import 'package:alert_maid/routes/app_pages.dart';
 import 'package:alert_maid/style/app_color.dart';
-import 'package:alert_maid/style/fonts.dart';
 import 'package:alert_maid/style/images.dart';
 import 'package:alert_maid/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreen  extends  GetView<LoginController> {
+  
    const LoginScreen ({super.key});
   @override
   Widget build(BuildContext context) {
@@ -65,10 +65,10 @@ class LoginScreen  extends  GetView<LoginController> {
           () {
         return controller.isLoading.value
             ? const CircularProgressIndicator(color: Colors.white,)
-            :  Text('login',style: robotoHugeWhite,);
+            :  Text('login',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),);
           },
         ),
-      
+   
             ), 
             ),
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreateAccountController extends GetxController {
+
    FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -30,13 +31,12 @@ class CreateAccountController extends GetxController {
         email: emailC.text.trim(),
         password: passC.text,
       );
-  
 
       if (userCredential.user != null) {
-        RxString uid = userCredential.user!.uid.obs;
+        RxString uid = userCredential.user!.uid.obs; 
 
         DocumentReference user =
-            firestore.collection("user").doc(uid.value);
+            firestore.collection("user").doc(uid.value); 
         await user.set({
           "name": nameC.text,
            "phone":phoneC.text,

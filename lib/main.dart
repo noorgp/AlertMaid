@@ -23,7 +23,6 @@ const AndroidNotificationChannel notificationChannel=AndroidNotificationChannel(
     "Warning",
   importance: Importance.max,
   showBadge: true
-
 );
 
 void main() async{
@@ -32,7 +31,7 @@ void main() async{
  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPreferences.getInstance();
 
- await initservice();
+ //await initservice();
   await di.init();
 
   SystemChrome.setPreferredOrientations([
@@ -100,7 +99,6 @@ void onStart(ServiceInstance service) async{
     service.stopSelf();
   });
 
-///alertsController.fetchData();
 
   final databaseReference = FirebaseDatabase.instance.reference();
 
@@ -126,7 +124,6 @@ storeAlert(name, phone, location);
         
         );
 }
-
     }
   });
 

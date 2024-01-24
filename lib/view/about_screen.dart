@@ -3,7 +3,6 @@
 import 'package:alert_maid/style/app_color.dart';
 import 'package:alert_maid/style/images.dart';
 import 'package:flutter/material.dart';
-import '../../style/fonts.dart';
 
 class AboutScreen extends StatelessWidget {
   @override

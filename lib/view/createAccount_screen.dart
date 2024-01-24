@@ -13,10 +13,11 @@ class CreateAccountScreen extends GetView<CreateAccountController> {
    @override
   Widget build(BuildContext context) {
     return  Scaffold(
-       appBar: AppBar(title: Text( 'Create Account', style: robotoHugeWhite,),
+       appBar: AppBar(title: Text( 'Create Account', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
        backgroundColor:  AppColor.primaryColor, iconTheme: const IconThemeData(
     color: Colors.white,), 
        ),
+       
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
