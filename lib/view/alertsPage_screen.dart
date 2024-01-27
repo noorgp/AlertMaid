@@ -17,7 +17,7 @@ class AlertsPageScreen extends GetView<HomeController> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {

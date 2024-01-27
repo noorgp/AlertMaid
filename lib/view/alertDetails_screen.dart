@@ -45,7 +45,7 @@ class MaidDetailsPage extends GetView<AlertsController> {
                 onPressed: (){
 controller.openLocationOnMap();
 controller.updateAlert();
-                  
+
                 },
                 icon: Icon(Icons.map, color: Colors.white,),
                 label: Text(

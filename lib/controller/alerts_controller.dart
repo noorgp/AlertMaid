@@ -11,12 +11,14 @@ class AlertsController extends GetxController {
     super.onInit();
  fetchData() ;
   }
+
 var name = "".obs;
 var age = "".obs;
 var phone = "".obs;
  var location = "".obs;
 var watchSentPackets = "".obs;
 var buttonStatus = "".obs;
+
   final databaseReference = FirebaseDatabase.instance.reference();
   RxString data = ''.obs;
 
@@ -32,7 +34,7 @@ void fetchData() {
         print('$key: $value');
       });
      location.value = dataMap['Location:'];
-       watchSentPackets..value = dataMap['watch_sent_packets:'];
+       watchSentPackets.value = dataMap['watch_sent_packets:'];
        name.value = dataMap['Name:'];
        phone.value = dataMap['Phone:'];
        age.value = dataMap['age:'];

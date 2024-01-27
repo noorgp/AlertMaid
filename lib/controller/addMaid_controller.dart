@@ -31,28 +31,46 @@ String? uId ;
  }
 
 
+
+
 void ADDMAID() async {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  if (nameC.text.isEmpty || ageC.text.isEmpty || phoneC.text.isEmpty) {
+
+  if (nameC.text.isEmpty || ageC.text.isEmpty) {
     CustomToast.errorToast('Please fill in all fields');
     return;
   }
+
   try {
-    isLoading(true);
-    CollectionReference maidsCollection = firestore.collection('maids');
-    await maidsCollection.add({
-      'name': nameC.text,
-      'age': ageC.text,
-      'phone': phoneC.text,
+     isLoading(true);
+    DatabaseReference maidsRef = databaseReference; // Reference to the root node
+
+    // Retrieve the current count of maids
+    DataSnapshot snapshot = await maidsRef.once().then((value) => value.snapshot);
+
+    int maidsCount = snapshot.value == null ? 0 : (snapshot.value as Map).length;
+
+    String childKey = "Worker_Wrist_Watch ${maidsCount + 1}";
+
+    DatabaseReference newMaidRef = maidsRef.child(childKey);
+
+    await newMaidRef.set({
+      'Location:': "",
+      'Name:': nameC.text,
+      'Phone:': phoneC.text,
+      'age:': ageC.text,
+      'button_status:':"Idle..",
+      'watch_sent_packets:':""
     });
-    isLoading(false);
- Clear();
+
+     isLoading(false);
     CustomToast.successToast('Maid added successfully');
+    Clear();
   } catch (error) {
-    CustomToast.errorToast('Failed to add maid: $error');
-    isLoading(false);
+      isLoading(false);
+   CustomToast.errorToast('Failed to add maid: $error');
   }
 }
 
 
 }
+

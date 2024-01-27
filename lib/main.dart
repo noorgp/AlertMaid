@@ -28,10 +28,10 @@ const AndroidNotificationChannel notificationChannel=AndroidNotificationChannel(
 void main() async{
  
   WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await SharedPreferences.getInstance();
 
- //await initservice();
+ await initservice();
   await di.init();
 
   SystemChrome.setPreferredOrientations([
@@ -50,7 +50,7 @@ AlertsController alertsController = AlertsController();
 
 
 Future<void> initservice()async{
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+ await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   var service=FlutterBackgroundService();
   //set for ios

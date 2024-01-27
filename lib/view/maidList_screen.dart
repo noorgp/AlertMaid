@@ -26,21 +26,24 @@ class MAIDLISTScreen extends GetView<ManageMaidController> {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-          StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('maids').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  var maidList = snapshot.data!.docs;
-                  if (maidList.isNotEmpty) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: maidList.length,
-                      itemBuilder: (context, index) {
-                        var maid = maidList[index];
-                        var maidData = maid.data() as Map<String, dynamic>;
-
-
-                return Card(
+           StreamBuilder(
+                // ignore: deprecated_member_use
+                stream: FirebaseDatabase.instance.reference()
+       .onValue,
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    var data = snapshot.data!.snapshot.value;
+                    if (data != null) {
+           List<String> ids = List<String>.from(data.keys);
+      
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: ids.length,
+                        itemBuilder: (context, index) {
+                          var id = ids[index];
+                    
+                          
+         return Card(
                   color: Colors.white,
                   elevation: 3,
                   margin: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
@@ -55,25 +58,39 @@ class MAIDLISTScreen extends GetView<ManageMaidController> {
                         child: Icon(Icons.girl_rounded, color: AppColor.secondaryColor,),
                       ),
                       title: Text(
-                        maidData["name"],
+                        data[id]["Name:"],
                         style: TextStyle(fontSize: 16),
                       ),
                       trailing: Icon(Icons.arrow_forward, color: AppColor.primaryColor),
                       onTap: () {
-                      Get.toNamed(Routes.MAIDINFO, arguments: maid.id);
+                      Get.toNamed(Routes.MAIDINFO, arguments: id);
                       },
                     ),
                   ),
                 );
-                   },
-                    );
-                  } else {
-                    return Center(child: Text("No data available."));
+                  
+                                   },
+                      );
+                      
+                    } else {
+                    return Center(child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 30,),
+                          Text("You do not have children", style: robotoMedium,),
+                          Image.asset(Images.nodata),
+                        ],
+                      ),
+                    ));
                   }
-                }
-                return Center(child: CircularProgressIndicator());
-              },
-            ),
+                  }
+      
+                  return Center(child: CircularProgressIndicator()); // Show a loading indicator or error message
+                },
+              ),
+                       
+              
               
             
           ],

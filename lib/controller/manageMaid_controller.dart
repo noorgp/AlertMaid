@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ManageMaidController extends GetxController {
+      var maidID = Get.arguments;
+
      @override
   void onInit() async {
     super.onInit();
 fetchMaid();
+print("the id is $maidID");
   }
 
-    var maidID = Get.arguments;
 
   DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
 
@@ -41,9 +43,9 @@ void updateMaid() {
     return;
   }
   databaseReference.child(maidID).update({
-    'name': nameC.text,
-    'age': ageC.text,
-    'phone': phoneC.text,
+    'Name:': nameC.text,
+    'age:': ageC.text,
+    'Phone:': phoneC.text,
   }).then((value) {
     isLoading = false.obs;
     CustomToast.successToast('Updated Maid successfully');
@@ -59,15 +61,16 @@ void updateMaid() {
 
 void fetchMaid() async {
   try {
-    DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('maids').doc(maidID).get();
-
+databaseReference = FirebaseDatabase.instance.ref();
+ DataSnapshot snapshot = await databaseReference.child(maidID).get();
+ 
+    Map maid = snapshot.value as Map;
     // Check if the document exists
     if (snapshot.exists) {
       // Access the data and update your text controllers
-      Map<String, dynamic> maidData = snapshot.data() as Map<String, dynamic>;
-      nameC.text = maidData['name'];
-      ageC.text = maidData['age'];
-      phoneC.text = maidData['phone'];
+      nameC.text = maid['Name:'];
+      ageC.text = maid['age:'];
+      phoneC.text = maid['Phone:'];
     } else {
       print('Document does not exist');
       // Handle the case where the document does not exist
